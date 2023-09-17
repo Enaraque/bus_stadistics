@@ -29,3 +29,7 @@ La aplicación genera varios gráficos y datos para ayudar al ayuntamiento en la
 6. **Grafico de barras apiladas**:Representa cada línea de autobús en el eje horizontal y la cantidad total de problemas en el eje vertical. Cada barra se dividiría en segmentos de colores diferentes, cada uno representando un tipo de problema. Esto mostraría visualmente la distribución de problemas por tipo en cada línea.
 
 7. **Comentarios Destacados**: Resalta los comentarios más útiles y relevantes para una acción inmediata.
+
+# Configuración de git y gitHub
+
+La configuración se puede ver [aqui](/doc/configuracion_gitHub.md)
