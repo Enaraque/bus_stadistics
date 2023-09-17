@@ -12,4 +12,4 @@
 ![Configuracion git](configuracion_git.png)
 
 ## Perfil personal de gitHub
-![Perfil de gitHub](perfil_github.png)
+![Perfil de gitHub](perfil_gitHub.png)
