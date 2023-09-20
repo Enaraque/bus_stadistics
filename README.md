@@ -1,9 +1,9 @@
-# bus_stadistics
+# fuel_data
 
 
 ## Descripción del problema
 
-Soy un usuario del transporte público de mi ciudad. Cuando detecto problemas de mantenimiento en las líneas y paradas de autobús, como cristales rotos o aires acondicionados estropeados, no se donde comunicar mi queja. También, tengo el mismo problema notificando las faltas de puntualidad de las líneas. Como resultado se tarda más tiempo en arreglar dichos problemas.
+Soy un empresario con una flota de camiones y el gasto operacional principal es el del combustible. Mi problema principal es que me gustaría reducir este gasto pero no tengo visibilidad para saber de que forma hacerlo. No se si tengo más camiones que gastan más que otros, si es la edad de estos, etc. Me gustaría tener las herramientas necesarias para saber donde puedo actual para reducir este coste.
 
 
 # Configuración de git y gitHub
