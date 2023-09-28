@@ -9,3 +9,8 @@ Soy un empresario con una flota de camiones y el gasto operacional principal es 
 # Configuración de git y gitHub
 
 La configuración se puede ver [aqui](/doc/configuracion_gitHub.md)
+
+# Estructura y planificación del proyecto
+
+- [Historias de Usuario](/doc/historias_usuario.md)
+- [Milestones](/doc/milestones.md)
