@@ -14,6 +14,6 @@
 - **Viabilidad:** Es viable cuando pasen los correspondientes tests.
 
 ## [M2] Implementación del algoritmo para obtener la ruta más óptima
-- **Objetivo:** Dada una lista de pedidos y un camión, obtener la ruta más óptima para realizar los pedidos.
+- **Objetivo:** Dada una lista de pedidos y un camión, obtener la ruta más óptima para realizar los pedidos en cuanto a ahorro de combustible.
 - **Entregable:** Código fuente de las clases o módulos.
 - **Viabilidad:** Es viable cuando pasen los correspondientes tests.
