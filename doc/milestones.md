@@ -4,12 +4,12 @@
 
 - **Objetivo:** Analizar las HUs para identificar y extraer los elementos del dominio del problema y codificarlo.
 - **Entregable:** Código modularizado del modelo del problema.
-- **Viabilidad:** Es viable cuando lo apruebe el product manage (yo).
+- **Viabilidad:** Es viable cuando lo apruebe el product manager (yo).
 
 
-## [M1] Implementación del algortimo para asignación de pedidos a camiones
+## [M1] Implementación del algoritmo para asignación de pedidos a camiones
 
-- **Objetivo:** Dada una lista de envios semanal y un conjunto de camiones, asignar a cada camión una lista de pedidos que hará cada día.
+- **Objetivo:** Dada una lista de envíos semanal y un conjunto de camiones, asignar a cada camión una lista de pedidos que hará cada día.
 - **Entregable:** Código fuente de las clases o módulos.
 - **Viabilidad:** Es viable cuando pasen los correspondientes tests.
 
