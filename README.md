@@ -14,3 +14,4 @@ La configuración se puede ver [aqui](/doc/configuracion_gitHub.md)
 
 - [Historias de Usuario](/doc/historias_usuario.md)
 - [Milestones](/doc/milestones.md)
+- [User Journey](/doc/user_journey.md)
