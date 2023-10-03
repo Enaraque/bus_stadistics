@@ -8,7 +8,8 @@ Al empezar la semana tengo una lista con todos los envíos que hay que hacer. Ca
   - Una carga 
   - Consumo total en litros 
   - Lista de días en los que se puede hacer el envío.
-  
+
+Además, especifico para cada envio la distancia que hay entre este y los otros destinos. Pudiendo haber destinos que no esten conectados entre sí.\
 Cada camión tiene una carga máxima la cual no es igual para todos los camiones.
 
 Ojalá tener una manera de saber qué asignación de pedidos tendría que hacer a cada camión para poder ser lo más óptimo posible.
