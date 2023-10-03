@@ -6,7 +6,7 @@
 - **Entregable:** Código modularizado del modelo del problema.
 - **Viabilidad:** Es viable cuando lo apruebe el product manager (yo).
 
-## [M1] Desarrollo del procesamiento que asigna de pedidos a camiones
+## [M1] Desarrollo del procesamiento que asigna pedidos a camiones
 
 - **Objetivo:** Dada una lista de envíos semanal y un conjunto de camiones, asignar a cada camión una lista de pedidos que hará cada día.
 - **Entregable:** Código fuente de las clases o módulos.
