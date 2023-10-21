@@ -1,0 +1,5 @@
+class Ruta {
+
+    distancias: number[][];
+
+}
