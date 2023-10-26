@@ -4,6 +4,20 @@
 
 Soy un empresario con una flota de camiones y el gasto operacional principal es el del combustible. Cada semana tengo que enviar varios pedidos con una carga determinada y una fecha máxima de entrega cada uno de ellos. Mi problema principal es que a la hora de asignarle una ruta a cada camión para poder entregar varios pedidos en un mismo viaje no sé cual seria la ruta más óptima a seguir entre ellos para que el coste del combustible sea el menor posible teniendo en cuenta que cada pedido tiene una fecha limite de entrega.
 
+## Clase Ruta
+
+La clase ruta representa a la entidad principal del proyecto. En esta clase se
+encuentra la lógica de negocio principal, esta es, calcular la ruta más óptima.
+
+### Comprobación de sintaxis
+
+Para poder comprobar que la sintaxis es correcta en nuestra entidad, así como en
+las diferentes clases de nuestro proyecto, se utiliza el siguiente comando:
+
+```bash
+deno task check
+```
+
 ## Configuración de git y gitHub
 
 La configuración se puede ver [aqui](/doc/configuracion_gitHub.md)
@@ -13,3 +27,6 @@ La configuración se puede ver [aqui](/doc/configuracion_gitHub.md)
 - [Historias de Usuario](/doc/historias_usuario.md)
 - [Milestones](/doc/milestones.md)
 - [User Journey](/doc/user_journey.md)
+- [Runtime](/doc/runtime.md)
+- [Gestor de dependencias](/doc/gestor_dependencias.md)
+- [Gestor de tareas](/doc/gestor_tareas.md)
