@@ -1,6 +1,6 @@
 {
     "tasks": {
-        "check": "deno lint"
+        "check": "deno check --all src/ruta.ts"
     },
     "lint": {
         "include": ["src/"],
