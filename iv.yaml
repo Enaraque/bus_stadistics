@@ -1,5 +1,7 @@
 lenguaje: TypeScript
-entidad: [/src/asignacionpedidos.ts, /src/ruta.js]
+entidad: 
+  - src/asignacionpedidos.ts
+  - src/ruta.ts
 automatizar:
   fichero: deno.json
-  orden: deno task 
+  orden: deno task
