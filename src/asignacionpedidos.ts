@@ -1,15 +1,21 @@
 import { Camion } from "./camion";
 import { Envio } from "./envio";
 
+export interface DistanciaEntreDestinos { 
+    origen: string;
+    destino: string;
+    distancia: number;
+}
+
 class AsignacionPedidos{
 
-    camiones: Array<Camion>;
-    envios: Array<Envio>;
-    distanciaEntreEnvios: number[][];
+    camiones: Camion[];
+    envios: Envio[];
+    distancias: DistanciaEntreDestinos[];
 
-    constructor(camiones: Array<Camion>, envios: Array<Envio>, distanciaEntreEnvios: number[][]){
+    constructor(camiones: Camion[], envios: Envio[], distancias: DistanciaEntreDestinos[]){
         this.camiones = camiones;
         this.envios = envios;
-        this.distanciaEntreEnvios = distanciaEntreEnvios;
+        this.distancias = distancias;
     }
 }
