@@ -1,7 +1,7 @@
 import { Camion } from "./camion";
 import { Envio } from "./envio";
 
-export interface DistanciaEntreDestinos { 
+export type DistanciaEntreDestinos = { 
     origen: string;
     destino: string;
     distancia: number;
