@@ -1,2 +1,4 @@
 lenguaje: TypeScript
-entidad: /src/AsignacionPedidos.ts
+entidad: 
+  - src/asignacionpedidos.ts
+  - src/ruta.ts
