@@ -1,0 +1,4 @@
+lenguaje: TypeScript
+entidad: 
+  - src/asignacionpedidos.ts
+  - src/ruta.ts
