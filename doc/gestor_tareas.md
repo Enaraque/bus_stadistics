@@ -3,14 +3,15 @@
 En este apartado se nos presenta diversos gestores de tareas que podemos
 escoger: Make, Drake y el propio gestor de tareas de Deno, etc.
 
-En mi caso, el criterio de elección principal va a ser la comodidad junto
-con el mantenimiento que el gestor tenga.
+En mi caso, el criterio de elección principal va a ser priorizar el uso de
+gestores de tareas que no sean externos junto con el mantenimiento que el
+gestor tenga.
 
 ## Make
 
 Una de las opciones que se nos presenta es **Make**. Este gestor de tareas
 es muy potente y permite automatizar tareas de forma sencilla. Make tiene
-muy bun mantenimiento y es muy usado en proyectos de gran envergadura. Pero
+muy buen mantenimiento y es muy usado en proyectos de gran envergadura. Pero
 respecto a la comodidad, al usar el runtime Deno, este ya tiene un gestor
 propio de tareas, por lo que me sería más cómodo usarlo en vez de usar make que
 sería externo.
@@ -26,7 +27,7 @@ Make ,que usa `shell`, resulta más cómodo utilizar el mismo lenguaje tanto
 en el gestor de tareas como en el código del proyecto.
 
 Sin embargo, uno de los puntos negativos que le veo a Drake es que no tiene
-un mantenimiento recurrente, ya que la última versión es de hace unn año y
+un mantenimiento recurrente, ya que la última versión es de hace un año y
 medio.
 
 ## Deno task
