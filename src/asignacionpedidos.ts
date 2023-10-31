@@ -1,5 +1,6 @@
-import { Camion } from "./camion";
-import { Envio } from "./envio";
+import { Camion } from "./camion.ts";
+import { Envio } from "./envio.ts";
+
 
 export type DistanciaEntreDestinos = { 
     origen: string;

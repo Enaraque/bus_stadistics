@@ -1,0 +1,13 @@
+{
+    "tasks": {
+        "check": "deno check --all src/ruta.ts"
+    },
+    "lint": {
+        "include": ["src/"],
+        "rules": {
+            "tags": ["recommended"],
+            "include": ["ban-untagged-todo"],
+            "exclude": ["no-unused-vars"]
+        }
+    }
+}

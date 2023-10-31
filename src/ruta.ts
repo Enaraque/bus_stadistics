@@ -1,5 +1,6 @@
-import { Envio } from "./envio";
-import { DistanciaEntreDestinos} from "./asignacionpedidos";
+import { Envio } from "./envio.ts";
+import { DistanciaEntreDestinos } from "./asignacionpedidos.ts";
+
 
 class Ruta {
 
@@ -10,5 +11,4 @@ class Ruta {
         this.envios = envios;
         this.distancias = distancias;
     }
-
 }
