@@ -1,6 +1,11 @@
 {
     "tasks": {
-        "check": "deno check --all src/ruta.ts"
+        "check": "deno check --all src/ruta.ts",
+        "test": "deno test"
+    },
+    "imports": {
+        "bdd" : "https://deno.land/std@0.204.0/testing/bdd.ts",
+        "asserts" : "https://deno.land/std@0.206.0/assert/mod.ts"
     },
     "lint": {
         "include": ["src/"],
