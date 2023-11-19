@@ -1,0 +1,78 @@
+{
+    "camiones" : [5000, 
+                  10200,
+                  8000
+    ],
+    
+    "envios" :[
+        {
+            "destino" : "Destino A",
+            "carga" : "300",
+            "consumo" : "7",
+            "listaDias" : ["05-02-2023", "06-02-2023", "07-02-2023"]
+        },
+        {
+            "destino" : "Destino B",
+            "carga" : "8000",
+            "consumo" : "10",
+            "listaDias" : ["05-02-2023"]
+        },
+        {
+            "destino" : "Destino C",
+            "carga" : "5000",
+            "consumo" : "5",
+            "listaDias" : ["06-02-2023", "07-02-2023"]
+        },
+        {
+            "destino" : "Destino D",
+            "carga" : "2200",
+            "consumo" : "11",
+            "listaDias" : ["08-02-2023", "10-02-2023"]
+        },
+        {
+            "destino" : "Destino E",
+            "carga" : "1000",
+            "consumo" : "8",
+            "listaDias" : ["05-02-2023", "07-02-2023", "06-02-2023"]
+        },
+        {
+            "destino" : "Destino F",
+            "carga" : "3000",
+            "consumo" : "9",
+            "listaDias" : ["09-02-2023", "07-02-2023", "05-02-2023"]
+        }
+    ],
+
+    "distanciaEntreEnvios" : [
+        {
+            "origen" : "Destino A",
+            "destino" : "Destino C",
+            "distancia" : "1000"
+        },
+        {
+            "origen" : "Destino A",
+            "destino" : "Destino E",
+            "distancia" : "2000"
+        },
+        {
+            "origen" : "Destino B",
+            "destino" : "Destino D",
+            "distancia" : "3000"
+        },
+        {
+            "origen" : "Destino B",
+            "destino" : "Destino E",
+            "distancia" : "4000"
+        },
+        {
+            "origen" : "Destino D",
+            "destino" : "Destino F",
+            "distancia" : "5000"
+        },
+        {
+            "origen" : "Destino C",
+            "destino" : "Destino D",
+            "distancia" : "6000"
+        }
+    ]          
+}
