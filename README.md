@@ -4,7 +4,6 @@
 
 Soy un empresario con una flota de camiones y el gasto operacional principal es el del combustible. Cada semana tengo que enviar varios pedidos con una carga determinada y una fecha máxima de entrega cada uno de ellos. Mi problema principal es que a la hora de asignarle una ruta a cada camión para poder entregar varios pedidos en un mismo viaje no sé cual seria la ruta más óptima a seguir entre ellos para que el coste del combustible sea el menor posible teniendo en cuenta que cada pedido tiene una fecha limite de entrega.
 
-
 ## Clase Ruta
 
 La clase ruta representa a la entidad principal del proyecto. En esta clase se
@@ -17,6 +16,14 @@ las diferentes clases de nuestro proyecto, se utiliza el siguiente comando:
 
 ```bash
 deno task check
+```
+
+### Ejecución de tests
+
+Para poder ejecutar los tests hay que ejecutar el siguiente comando:
+
+```bash
+deno task test
 ```
 
 ## Configuración de git y gitHub
