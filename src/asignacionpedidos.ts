@@ -129,4 +129,46 @@ export class AsignacionPedidos{
     
         return false;
     }
+    repartir_envios_a_camiones(lista_camiones_envios_asignados: [Camion, Envio[], number][],
+                               lista_envios_diarios: Envio[],
+                               envios_sin_camion: Envio[]): boolean {       
+        while (lista_envios_diarios.length > 0) {
+            if (this.cargar_envio(lista_envios_diarios[0], lista_camiones_envios_asignados)) {
+                lista_envios_diarios.shift();
+            }
+            else {
+                envios_sin_camion.push(lista_envios_diarios.shift()!);
+            }
+        }
+
+        if (envios_sin_camion.length > 0) {
+            let envios_recorridos = 0;
+            const tam_inicial_envios_sin_camion = envios_sin_camion.length;
+            while (envios_recorridos < tam_inicial_envios_sin_camion) {
+                const envio_sin_camion = envios_sin_camion.shift();
+                if (!this.cargar_envio(envio_sin_camion!, lista_camiones_envios_asignados)) {
+                    envios_sin_camion.push(envio_sin_camion!);
+                }
+                envios_recorridos++;
+            }
+        }
+
+        return true;
+
+    }
+    obtener_asignacion(): [Camion, Envio[], number][] {
+        const lista_envios_por_dias = this.agrupar_envios_por_dia();
+        const lista_camiones_envios_asignados: [Camion, Envio[], number][] = [];
+        const envios_sin_camion: Envio[] = [];
+
+        this.camiones.forEach((camion) => {
+            lista_camiones_envios_asignados.push([camion, [], 0]);
+        });
+
+        for (const lista_envios_diarios of Object.values(lista_envios_por_dias)) {
+            this.repartir_envios_a_camiones(lista_camiones_envios_asignados, lista_envios_diarios, envios_sin_camion);
+        }
+
+        return lista_camiones_envios_asignados;
+    }
 }

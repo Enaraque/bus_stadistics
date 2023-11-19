@@ -88,7 +88,13 @@ describe("Agrupación y ordenación de pedidos", () => {
 });
 
 describe("Asignación de pedidos a camiones", () => {
-    let asignacion_pedidos : AsignacionPedidos; 
+    let asignacion_pedidos : AsignacionPedidos;
+    let camiones_envios_asignados : [Camion, Envio[], number][];
+
+    beforeAll(() => {
+        asignacion_pedidos = new AsignacionPedidos();
+        camiones_envios_asignados = asignacion_pedidos.obtener_asignacion();
+    });
 
     it ("Los pedidos asignados a un camión no superan su carga máxima", () => {
         const camiones_envios_asignados_test: [Camion, Envio[], number][] = [
@@ -124,5 +130,16 @@ describe("Asignación de pedidos a camiones", () => {
         assertEquals(camiones_envios_asignados_test[0][2], 6000);
         assertEquals(camiones_envios_asignados_test[1][1].length, 1);
         assertEquals(camiones_envios_asignados_test[1][2], 5000);
+    });
+
+    it ("Un pedido solo se encuentra en un camión", () => {
+        const envios_asignados = camiones_envios_asignados.flatMap((camion_envios_asignados) => {
+            return camion_envios_asignados[1];
+        });
+        const envios_unicos = envios_asignados.filter((envio, index, array) =>
+            array.findIndex((e) => e.destino === envio.destino) === index
+        );
+
+        assertEquals(envios_asignados.length, envios_unicos.length);
     });
 });
