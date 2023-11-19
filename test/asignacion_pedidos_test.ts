@@ -1,6 +1,7 @@
 import {
     afterEach,
     beforeEach,
+    beforeAll,
     describe,
     it,
 } from "bdd";
@@ -58,6 +59,30 @@ describe("Leer datos de JSON", () => {
             assertEquals(envio instanceof Envio, true)
         });
     });
+});
 
-    
+describe("Agrupación y ordenación de pedidos", () => {
+    it("Los pedidos se ordenan por fecha y consumo", () => {
+        const asignacionPedidos = new AsignacionPedidos();
+        const {envios} = asignacionPedidos;
+        asignacionPedidos.ordenar_envios_por_fecha();
+        assertEquals(envios[0].destino, "Destino A");
+        assertEquals(envios[1].destino, "Destino E");
+        assertEquals(envios[2].destino, "Destino F");
+        assertEquals(envios[3].destino, "Destino B");
+    });
+
+
+    it ("Los pedidos se agrupan por fecha", () => {
+        const asignacionPedidos = new AsignacionPedidos();
+        const {envios} = asignacionPedidos;
+        const enviosAgrupados = asignacionPedidos.agrupar_envios_por_dia();
+        assertEquals(enviosAgrupados["2023-02-05"][0].destino, "Destino A");
+        assertEquals(enviosAgrupados["2023-02-05"][1].destino, "Destino E");
+        assertEquals(enviosAgrupados["2023-02-05"][2].destino, "Destino F");
+
+        assertEquals(enviosAgrupados["2023-02-06"][0].destino, "Destino C");
+
+        assertEquals(enviosAgrupados["2023-02-08"][0].destino, "Destino D");
+    });
 });

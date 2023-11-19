@@ -59,4 +59,38 @@ export class AsignacionPedidos{
         return array_distancias;
     }
 
+    comparar_por_fecha(a: Envio, b: Envio): number {
+        const fechaA = a.listaDias[0].getTime();
+        const fechaB = b.listaDias[0].getTime();
+        
+        if (fechaA === fechaB) {
+            const consumoA = a.consumo;
+            const consumoB = b.consumo;
+
+            return consumoA - consumoB;
+        }
+        return fechaA - fechaB;
+    }
+
+    ordenar_envios_por_fecha(): void {
+        this.envios.forEach((envio) => {
+            envio.listaDias.sort((a, b) => a.getTime() - b.getTime());
+        });
+        this.envios.sort(this.comparar_por_fecha);
+    }
+
+    agrupar_envios_por_dia(): { [key: string]: Envio[] } {
+        this.ordenar_envios_por_fecha();
+        const envios_agrupados: { [key: string]: Envio[] } = {};
+      
+        this.envios.forEach(envio => {
+            const fecha_string = envio.listaDias[0].toISOString().split('T')[0];
+            if (!envios_agrupados[fecha_string]) {
+                    envios_agrupados[fecha_string] = [];
+            }    
+            envios_agrupados[fecha_string].push(envio);
+        });
+      
+        return envios_agrupados;
+    }  
 }
