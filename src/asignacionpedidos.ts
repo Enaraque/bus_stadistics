@@ -94,6 +94,23 @@ export class AsignacionPedidos{
         return envios_agrupados;
     }
 
+    comprobar_conectividad(lista_envios: Envio[], envio: Envio): boolean {
+        for (const envio_actual of lista_envios) {
+            const destino_envio_a_insertar = envio.destino;
+            const destino_envio_actual = envio_actual.destino;
+            const conectividad = this.distancias.find((distancia_entre_envios) => {
+                return (distancia_entre_envios.origen === destino_envio_a_insertar && distancia_entre_envios.destino === destino_envio_actual) ||
+                       (distancia_entre_envios.origen === destino_envio_actual && distancia_entre_envios.destino === destino_envio_a_insertar);
+            });
+    
+            if (conectividad) {
+                return true;
+            }
+        }
+    
+        return false;
+    }
+
     cargar_envio(envio: Envio, lista_camiones_envios_asignados: [Camion, Envio[], number][]): boolean {
         for (const lista of lista_camiones_envios_asignados) {
             if (lista[2] === 0 && lista[0].cargaMaxima >= envio.carga) {
@@ -102,9 +119,14 @@ export class AsignacionPedidos{
                 
                 return true;
             }
+            else if (lista[0].cargaMaxima >= (envio.carga + lista[2]) && this.comprobar_conectividad(lista[1], envio)) {
+                lista[1].push(envio);
+                lista[2] += envio.carga;
+    
+                return true;
+            }
         }
     
         return false;
     }
-    
 }

@@ -102,4 +102,27 @@ describe("Asignación de pedidos a camiones", () => {
         assertEquals(camiones_envios_asignados_test[0][1].length, 0);
         assertEquals(camiones_envios_asignados_test[0][2], 0);
     });
+
+    it ("Los pedidos que están en un mismo camión están conectados", () => {
+        const camiones_envios_asignados_test: [Camion, Envio[], number][] = [
+            [new Camion(10000), [], 0],
+            [new Camion(5000), [], 0],
+        ];
+        const envio1 = new Envio("Destino A", 5000, 10, [new Date("2023-02-05")]);
+        const envio2 = new Envio("Destino B", 5000, 10, [new Date("2023-02-05")]);
+        const envio3 = new Envio("Destino C", 1000, 10, [new Date("2023-02-05")]);
+        
+        // Las distancias entre los destinos se encuentran en el JSON
+        const resultado1 = asignacion_pedidos.cargar_envio(envio1, camiones_envios_asignados_test);
+        const resultado2 = asignacion_pedidos.cargar_envio(envio2, camiones_envios_asignados_test);
+        const resultado3 = asignacion_pedidos.cargar_envio(envio3, camiones_envios_asignados_test);
+    
+        assertEquals(resultado1, true);
+        assertEquals(resultado2, true);
+        assertEquals(resultado3, true);
+        assertEquals(camiones_envios_asignados_test[0][1].length, 2);
+        assertEquals(camiones_envios_asignados_test[0][2], 6000);
+        assertEquals(camiones_envios_asignados_test[1][1].length, 1);
+        assertEquals(camiones_envios_asignados_test[1][2], 5000);
+    });
 });
