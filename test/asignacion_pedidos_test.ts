@@ -86,3 +86,20 @@ describe("Agrupación y ordenación de pedidos", () => {
         assertEquals(enviosAgrupados["2023-02-08"][0].destino, "Destino D");
     });
 });
+
+describe("Asignación de pedidos a camiones", () => {
+    let asignacion_pedidos : AsignacionPedidos; 
+
+    it ("Los pedidos asignados a un camión no superan su carga máxima", () => {
+        const camiones_envios_asignados_test: [Camion, Envio[], number][] = [
+            [new Camion(1000), [], 0],
+        ];
+        const envio = new Envio("Destino A", 1500, 10, [new Date("2023-02-05")]);
+    
+        const resultado = asignacion_pedidos.cargar_envio(envio,camiones_envios_asignados_test);
+    
+        assertEquals(resultado, false);
+        assertEquals(camiones_envios_asignados_test[0][1].length, 0);
+        assertEquals(camiones_envios_asignados_test[0][2], 0);
+    });
+});

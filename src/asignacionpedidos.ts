@@ -92,5 +92,19 @@ export class AsignacionPedidos{
         });
       
         return envios_agrupados;
-    }  
+    }
+
+    cargar_envio(envio: Envio, lista_camiones_envios_asignados: [Camion, Envio[], number][]): boolean {
+        for (const lista of lista_camiones_envios_asignados) {
+            if (lista[2] === 0 && lista[0].cargaMaxima >= envio.carga) {
+                lista[1].push(envio);
+                lista[2] += envio.carga;
+                
+                return true;
+            }
+        }
+    
+        return false;
+    }
+    
 }
