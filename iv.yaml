@@ -5,3 +5,4 @@ entidad:
 automatizar:
   fichero: deno.json
   orden: deno task
+test: test/asignacion_pedidos.ts
