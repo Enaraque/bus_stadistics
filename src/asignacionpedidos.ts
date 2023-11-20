@@ -72,14 +72,14 @@ export class AsignacionPedidos{
         return fechaA - fechaB;
     }
 
-    private ordenarEnviosPorFecha(): void {
+    ordenarEnviosPorFecha(): void {
         this.envios.forEach((envio) => {
             envio.listaDias.sort((a, b) => a.getTime() - b.getTime());
         });
         this.envios.sort(this.compararPorFecha);
     }
 
-    private agruparEnviosPorDia(): { [key: string]: Envio[] } {
+    agruparEnviosPorDia(): { [key: string]: Envio[] } {
         this.ordenarEnviosPorFecha();
         const enviosAgrupados: { [key: string]: Envio[] } = {};
       
