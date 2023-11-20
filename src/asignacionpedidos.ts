@@ -27,11 +27,11 @@ export class AsignacionPedidos{
         return new Date(year, month-1, day+1);
     }
 
-    extraerCamionesJson(camiones : number[]): Camion[] {
+    private extraerCamionesJson(camiones : number[]): Camion[] {
         return camiones.map((cargaMaxima: number) => new Camion(cargaMaxima));
     }
 
-    extraerEnviosJson(envios : {destino: string, carga : string, consumo: string, listaDias: string[]}[]): Envio[] {
+    private extraerEnviosJson(envios : {destino: string, carga : string, consumo: string, listaDias: string[]}[]): Envio[] {
         const arrayEnvios : Envio[] = [];
         envios.forEach((value) => {
             const {destino} = value;
@@ -47,7 +47,7 @@ export class AsignacionPedidos{
         return arrayEnvios;
     };
 
-    extraerDistanciasJson(distancias : {origen: string, destino: string, distancia: string}[]): DistanciaEntreDestinos[] {
+    private extraerDistanciasJson(distancias : {origen: string, destino: string, distancia: string}[]): DistanciaEntreDestinos[] {
         const arrayDistancias : DistanciaEntreDestinos[] = [];
         distancias.forEach(function (value) {
             const {origen, destino} = value;
@@ -59,7 +59,7 @@ export class AsignacionPedidos{
         return arrayDistancias;
     }
 
-    compararPorFecha(a: Envio, b: Envio): number {
+    private compararPorFecha(a: Envio, b: Envio): number {
         const fechaA = a.listaDias[0].getTime();
         const fechaB = b.listaDias[0].getTime();
         
@@ -72,14 +72,14 @@ export class AsignacionPedidos{
         return fechaA - fechaB;
     }
 
-    ordenarEnviosPorFecha(): void {
+    private ordenarEnviosPorFecha(): void {
         this.envios.forEach((envio) => {
             envio.listaDias.sort((a, b) => a.getTime() - b.getTime());
         });
         this.envios.sort(this.compararPorFecha);
     }
 
-    agruparEnviosPorDia(): { [key: string]: Envio[] } {
+    private agruparEnviosPorDia(): { [key: string]: Envio[] } {
         this.ordenarEnviosPorFecha();
         const enviosAgrupados: { [key: string]: Envio[] } = {};
       
