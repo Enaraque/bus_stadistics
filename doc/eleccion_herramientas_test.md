@@ -43,12 +43,14 @@ deuda técnica.
 
 ## Test runner
 
-- [Denops_test](https://github.com/vim-denops/deno-denops-test): Este framework
-    es compatible con Deno, además es actual y tiene un mantenimiento activo ya
-    que su última actualización es de junio de este año.
-    Una de las principales desventajas es que cuenta con escasa documentación
-    y la comunidad es bastante reducida. Un gran factor en su contra es que se
-    trata de una librería externa.
+- [Orange](https://deno.land/x/orange@v0.5.0): Es un framework
+    que fue diseñado para ser usado con Mandarime. Para declarar un test, se
+    utilizan decoradores. Se tiene que utilizar `tsconfig.json` para su
+    fucionamiento, y siempre que queramos correr los test necesitaremos utilizar
+    dicho archivo (aumentando aún más la deuda técnica). Su documentación no es
+    del todo escasa pero tampoco es muy extensa.
+    Su última actualización consta de hace más de dos años por lo que podemos
+    asumir que no es un mantenimiento especialmente activo.
 
 - [Merlin](https://deno.land/x/merlin@v1.0.7): Es un framework de deno basado en
     Jest de Javascript.Consta de una documentación bastante amplica y clara.
@@ -69,10 +71,11 @@ deuda técnica.
     antes y después de cada test.
 
 En mi caso, he estado dudando entre usar `Merlin` o el framework propio de Deno para BDD
-ya que ambos cuentan con una amplica documentación. Al final me he decantado por el
-framework propio de Deno ya que cuenta con un mantenimiento activo, a diferenciade `Merlin`
-que lleva mas de un año sin actualizaciones. Otro factor, y el más importante es que,
-al igual que las aserciones, al estar integrado en Deno, se reduce la deuda técnica.
+ya que ambos cuentan con una amplia documentación en comparación con `Orange`.
+Al final me he decantado por el framework propio de Deno ya que cuenta con un
+mantenimiento activo, a diferenciade `Merlin` que lleva mas de un año sin actualizaciones.
+Otro factor, y el más importante es que, al igual que las aserciones, al estar integrado
+en Deno, se reduce la deuda técnica.
 
 ## CLI
 
