@@ -65,7 +65,7 @@ describe("Agrupación y ordenación de pedidos", () => {
     it("Los pedidos se ordenan por fecha y consumo", () => {
         const asignacionPedidos = new AsignacionPedidos();
         const {envios} = asignacionPedidos;
-        asignacionPedidos.ordenar_envios_por_fecha();
+        asignacionPedidos.ordenarEnviosPorFecha();
         assertEquals(envios[0].destino, "Destino A");
         assertEquals(envios[1].destino, "Destino E");
         assertEquals(envios[2].destino, "Destino F");
@@ -76,7 +76,7 @@ describe("Agrupación y ordenación de pedidos", () => {
     it ("Los pedidos se agrupan por fecha", () => {
         const asignacionPedidos = new AsignacionPedidos();
         const {envios} = asignacionPedidos;
-        const enviosAgrupados = asignacionPedidos.agrupar_envios_por_dia();
+        const enviosAgrupados = asignacionPedidos.agruparEnviosPorDia();
         assertEquals(enviosAgrupados["2023-02-05"][0].destino, "Destino A");
         assertEquals(enviosAgrupados["2023-02-05"][1].destino, "Destino E");
         assertEquals(enviosAgrupados["2023-02-05"][2].destino, "Destino F");
@@ -88,29 +88,29 @@ describe("Agrupación y ordenación de pedidos", () => {
 });
 
 describe("Asignación de pedidos a camiones", () => {
-    let asignacion_pedidos : AsignacionPedidos;
-    let camiones_envios_asignados : [Camion, Envio[], number][];
+    let asignacionPedidos : AsignacionPedidos;
+    let camionesEnviosAsignados : [Camion, Envio[], number][];
 
     beforeAll(() => {
-        asignacion_pedidos = new AsignacionPedidos();
-        camiones_envios_asignados = asignacion_pedidos.obtener_asignacion();
+        asignacionPedidos = new AsignacionPedidos();
+        camionesEnviosAsignados = asignacionPedidos.obtenerAsignacion();
     });
 
     it ("Los pedidos asignados a un camión no superan su carga máxima", () => {
-        const camiones_envios_asignados_test: [Camion, Envio[], number][] = [
+        const camionesEnviosAsignadosTest: [Camion, Envio[], number][] = [
             [new Camion(1000), [], 0],
         ];
         const envio = new Envio("Destino A", 1500, 10, [new Date("2023-02-05")]);
     
-        const resultado = asignacion_pedidos.cargar_envio(envio,camiones_envios_asignados_test);
+        const resultado = asignacionPedidos.cargarEnvio(envio,camionesEnviosAsignadosTest);
     
         assertEquals(resultado, false);
-        assertEquals(camiones_envios_asignados_test[0][1].length, 0);
-        assertEquals(camiones_envios_asignados_test[0][2], 0);
+        assertEquals(camionesEnviosAsignadosTest[0][1].length, 0);
+        assertEquals(camionesEnviosAsignadosTest[0][2], 0);
     });
 
     it ("Los pedidos que están en un mismo camión están conectados", () => {
-        const camiones_envios_asignados_test: [Camion, Envio[], number][] = [
+        const camionesEnviosAsignadosTest: [Camion, Envio[], number][] = [
             [new Camion(10000), [], 0],
             [new Camion(5000), [], 0],
         ];
@@ -119,27 +119,27 @@ describe("Asignación de pedidos a camiones", () => {
         const envio3 = new Envio("Destino C", 1000, 10, [new Date("2023-02-05")]);
         
         // Las distancias entre los destinos se encuentran en el JSON
-        const resultado1 = asignacion_pedidos.cargar_envio(envio1, camiones_envios_asignados_test);
-        const resultado2 = asignacion_pedidos.cargar_envio(envio2, camiones_envios_asignados_test);
-        const resultado3 = asignacion_pedidos.cargar_envio(envio3, camiones_envios_asignados_test);
+        const resultado1 = asignacionPedidos.cargarEnvio(envio1, camionesEnviosAsignadosTest);
+        const resultado2 = asignacionPedidos.cargarEnvio(envio2, camionesEnviosAsignadosTest);
+        const resultado3 = asignacionPedidos.cargarEnvio(envio3, camionesEnviosAsignadosTest);
     
         assertEquals(resultado1, true);
         assertEquals(resultado2, true);
         assertEquals(resultado3, true);
-        assertEquals(camiones_envios_asignados_test[0][1].length, 2);
-        assertEquals(camiones_envios_asignados_test[0][2], 6000);
-        assertEquals(camiones_envios_asignados_test[1][1].length, 1);
-        assertEquals(camiones_envios_asignados_test[1][2], 5000);
+        assertEquals(camionesEnviosAsignadosTest[0][1].length, 2);
+        assertEquals(camionesEnviosAsignadosTest[0][2], 6000);
+        assertEquals(camionesEnviosAsignadosTest[1][1].length, 1);
+        assertEquals(camionesEnviosAsignadosTest[1][2], 5000);
     });
 
     it ("Un pedido solo se encuentra en un camión", () => {
-        const envios_asignados = camiones_envios_asignados.flatMap((camion_envios_asignados) => {
-            return camion_envios_asignados[1];
+        const enviosAsignados = camionesEnviosAsignados.flatMap((camionEnviosAsignados) => {
+            return camionEnviosAsignados[1];
         });
-        const envios_unicos = envios_asignados.filter((envio, index, array) =>
+        const enviosUnicos = enviosAsignados.filter((envio, index, array) =>
             array.findIndex((e) => e.destino === envio.destino) === index
         );
 
-        assertEquals(envios_asignados.length, envios_unicos.length);
+        assertEquals(enviosAsignados.length, enviosUnicos.length);
     });
 });
