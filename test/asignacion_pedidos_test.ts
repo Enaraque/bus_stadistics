@@ -13,8 +13,8 @@ import {
 
 import { Camion } from "../src/camion.ts";
 import { Envio } from "../src/envio.ts";
-import { AsignacionPedidos } from "../src/asignacionpedidos.ts";
-import { DistanciaEntreDestinos } from "../src/asignacionpedidos.ts";
+import { AsignacionPedidos } from "../src/asignacion_pedidos.ts";
+import { DistanciaEntreDestinos } from "../src/asignacion_pedidos.ts";
 
 describe("Leer datos de JSON", () => {
     let asignacionPedidos: AsignacionPedidos;

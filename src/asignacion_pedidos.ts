@@ -1,6 +1,6 @@
 import { Camion } from "./camion.ts";
 import { Envio } from "./envio.ts";
-import json from "../data/reparto.json" with { type: "json" };
+import datos_para_asignacion_pedidos from "../data/reparto.json" with { type: "json" };
 
 
 export type DistanciaEntreDestinos = { 
@@ -16,7 +16,7 @@ export class AsignacionPedidos{
     distancias: DistanciaEntreDestinos[];
 
     constructor() {
-        const {camiones, envios, distanciaEntreEnvios} = json;
+        const {camiones, envios, distanciaEntreEnvios} = datos_para_asignacion_pedidos;
         this.camiones = this.extraerCamionesJson(camiones);
         this.envios = this.extraerEnviosJson(envios);
         this.distancias = this.extraerDistanciasJson(distanciaEntreEnvios);
