@@ -1,6 +1,4 @@
 import {
-    afterEach,
-    beforeEach,
     beforeAll,
     describe,
     it,
@@ -10,61 +8,72 @@ import {
     assertEquals,
     assertNotEquals,
 } from "asserts";
-
+import datos_para_asignacion_pedidos from "../data/reparto.json" with { type: "json" };
 import { Camion } from "../src/camion.ts";
 import { Envio } from "../src/envio.ts";
 import { AsignacionPedidos } from "../src/asignacion_pedidos.ts";
 import { DistanciaEntreDestinos } from "../src/asignacion_pedidos.ts";
 
-describe("Leer datos de JSON", () => {
-    let asignacionPedidos: AsignacionPedidos;
 
-    beforeEach(() => {
-        asignacionPedidos = new AsignacionPedidos();
-    });
-    it("Extraer camiones", () => {
-        const {camiones} = asignacionPedidos;
-        const camionesEsperados : Camion[] = [
-            new Camion(5000),
-            new Camion(10200),
-            new Camion(8000),
-        ];
-            
-        assertEquals(camiones, camionesEsperados);
-    });
+function parseFechaDDMMYY(dateString: string): Date {
+    const [day, month, year] = dateString.split("-").map(Number);
+    return new Date(year, month-1, day+1);
+}
 
-    it("Extraer distancias", () => {
-        const {distancias} = asignacionPedidos;
-        const distanciasEsperadas : DistanciaEntreDestinos[] = [
-            { origen: "Destino A", destino: "Destino C", distancia: 1000 },
-            { origen: "Destino A", destino: "Destino E", distancia: 2000 },
-            { origen: "Destino B", destino: "Destino D", distancia: 3000 },
-            { origen: "Destino B", destino: "Destino E", distancia: 4000 },
-            { origen: "Destino D", destino: "Destino F", distancia: 5000 },
-            { origen: "Destino C", destino: "Destino D", distancia: 6000 }
-        ];
-            
-        assertEquals(distancias, distanciasEsperadas);
-    });
-    it("Datos de JSON de camion son instancias de Camion", () => {
-        const {camiones} = asignacionPedidos;
-        camiones.forEach((camion) => {
-            assertEquals(camion instanceof Camion, true)
-        });
+function extraerCamionesJson(camiones : number[]): Camion[] {
+    return camiones.map((cargaMaxima: number) => new Camion(cargaMaxima));
+}
+
+function extraerEnviosJson(envios : {destino: string, carga : string, consumo: string, listaDias: string[]}[]): Envio[] {
+    const arrayEnvios : Envio[] = [];
+    envios.forEach((value) => {
+        const {destino} = value;
+        const carga = parseInt(value.carga);
+        const consumo = parseInt(value.consumo);
+        const listaDias = value.listaDias.map(dateString => parseFechaDDMMYY(dateString));
+
+        const envio = new Envio(destino, carga, consumo, listaDias);
+
+        arrayEnvios.push(envio);
     });
 
-    it("Datos de JSON de envios son instancias de Envio", () => {
-        const {envios} = asignacionPedidos;
-        envios.forEach((envio) => {
-            assertEquals(envio instanceof Envio, true)
-        });
+    return arrayEnvios;
+};
+
+function extraerDistanciasJson(distancias : {origen: string, destino: string, distancia: string}[]): DistanciaEntreDestinos[] {
+    const arrayDistancias : DistanciaEntreDestinos[] = [];
+    distancias.forEach(function (value) {
+        const {origen, destino} = value;
+        const distancia = parseInt(value.distancia);
+        const distancia_entre_envios_actual : DistanciaEntreDestinos = {origen, destino, distancia};
+        arrayDistancias.push(distancia_entre_envios_actual);
     });
-});
+
+    return arrayDistancias;
+}
+
+function extraerDatosAsignacion(): [Camion[], Envio[], DistanciaEntreDestinos[]] {
+    const {camiones, envios, distanciaEntreEnvios} = datos_para_asignacion_pedidos;
+    const camionesExtraidos = extraerCamionesJson(camiones);
+    const enviosExtraidos = extraerEnviosJson(envios);
+    const distanciasExtraidas = extraerDistanciasJson(distanciaEntreEnvios);
+
+    return [camionesExtraidos, enviosExtraidos, distanciasExtraidas];
+}
 
 describe("Agrupación y ordenación de pedidos", () => {
+    let camiones: Camion[];
+    let envios: Envio[];
+    let distancias: DistanciaEntreDestinos[];
+    let asignacionPedidos: AsignacionPedidos;
+    beforeAll(() => {
+        [camiones, envios, distancias] = extraerDatosAsignacion();
+        asignacionPedidos = new AsignacionPedidos(camiones, envios, distancias);
+    });
+
+
     it("Los pedidos se ordenan por fecha y consumo", () => {
-        const asignacionPedidos = new AsignacionPedidos();
-        const {envios} = asignacionPedidos;
+
         asignacionPedidos.ordenarEnviosPorFecha();
         assertEquals(envios[0].destino, "Destino A");
         assertEquals(envios[1].destino, "Destino E");
@@ -74,8 +83,6 @@ describe("Agrupación y ordenación de pedidos", () => {
 
 
     it ("Los pedidos se agrupan por fecha", () => {
-        const asignacionPedidos = new AsignacionPedidos();
-        const {envios} = asignacionPedidos;
         const enviosAgrupados = asignacionPedidos.agruparEnviosPorDia();
         assertEquals(enviosAgrupados["2023-02-05"][0].destino, "Destino A");
         assertEquals(enviosAgrupados["2023-02-05"][1].destino, "Destino E");
@@ -88,11 +95,15 @@ describe("Agrupación y ordenación de pedidos", () => {
 });
 
 describe("Asignación de pedidos a camiones", () => {
-    let asignacionPedidos : AsignacionPedidos;
+    let camiones: Camion[];
+    let envios: Envio[];
+    let distancias: DistanciaEntreDestinos[];
+    let asignacionPedidos: AsignacionPedidos;
     let camionesEnviosAsignados : [Camion, Envio[], number][];
 
     beforeAll(() => {
-        asignacionPedidos = new AsignacionPedidos();
+        [camiones, envios, distancias] = extraerDatosAsignacion();
+        asignacionPedidos = new AsignacionPedidos(camiones, envios, distancias);
         camionesEnviosAsignados = asignacionPedidos.obtenerAsignacion();
     });
 

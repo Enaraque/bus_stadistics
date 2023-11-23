@@ -1,7 +1,5 @@
 import { Camion } from "./camion.ts";
 import { Envio } from "./envio.ts";
-import datos_para_asignacion_pedidos from "../data/reparto.json" with { type: "json" };
-
 
 export type DistanciaEntreDestinos = { 
     origen: string;
@@ -15,48 +13,10 @@ export class AsignacionPedidos{
     envios: Envio[];
     distancias: DistanciaEntreDestinos[];
 
-    constructor() {
-        const {camiones, envios, distanciaEntreEnvios} = datos_para_asignacion_pedidos;
-        this.camiones = this.extraerCamionesJson(camiones);
-        this.envios = this.extraerEnviosJson(envios);
-        this.distancias = this.extraerDistanciasJson(distanciaEntreEnvios);
-    }
-
-    private parseFechaDDMMYY(dateString: string): Date {
-        const [day, month, year] = dateString.split("-").map(Number);
-        return new Date(year, month-1, day+1);
-    }
-
-    private extraerCamionesJson(camiones : number[]): Camion[] {
-        return camiones.map((cargaMaxima: number) => new Camion(cargaMaxima));
-    }
-
-    private extraerEnviosJson(envios : {destino: string, carga : string, consumo: string, listaDias: string[]}[]): Envio[] {
-        const arrayEnvios : Envio[] = [];
-        envios.forEach((value) => {
-            const {destino} = value;
-            const carga = parseInt(value.carga);
-            const consumo = parseInt(value.consumo);
-            const listaDias = value.listaDias.map(dateString => this.parseFechaDDMMYY(dateString));
-
-            const envio = new Envio(destino, carga, consumo, listaDias);
-
-            arrayEnvios.push(envio);
-        });
-
-        return arrayEnvios;
-    };
-
-    private extraerDistanciasJson(distancias : {origen: string, destino: string, distancia: string}[]): DistanciaEntreDestinos[] {
-        const arrayDistancias : DistanciaEntreDestinos[] = [];
-        distancias.forEach(function (value) {
-            const {origen, destino} = value;
-            const distancia = parseInt(value.distancia);
-            const distancia_entre_envios_actual : DistanciaEntreDestinos = {origen, destino, distancia};
-            arrayDistancias.push(distancia_entre_envios_actual);
-        });
-
-        return arrayDistancias;
+    constructor(camiones: Camion[], envios: Envio[], distancias: DistanciaEntreDestinos[]) {
+        this.camiones = camiones;
+        this.envios = envios;
+        this.distancias = distancias;
     }
 
     private compararPorFecha(a: Envio, b: Envio): number {
