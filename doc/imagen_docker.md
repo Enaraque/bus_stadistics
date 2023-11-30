@@ -80,7 +80,7 @@ Las ejecuciones han sido las siguientes:
 - Para la imagen `denoland/deno:debian`:
 
     ![Ejecucion con test con imagen debian](./ejecucion_tests_deno_debian.png)
-
+ 
 ### Resultados
 
 Como podemos ver, alpine sigue ganando por 3ms a debian. Por tanto, la imagen elegida será `denoland/deno:alpine`
