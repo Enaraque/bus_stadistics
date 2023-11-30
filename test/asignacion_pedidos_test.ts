@@ -17,7 +17,7 @@ import { DistanciaEntreDestinos } from "../src/asignacion_pedidos.ts";
 
 function parseFechaDDMMYY(dateString: string): Date {
     const [day, month, year] = dateString.split("-").map(Number);
-    return new Date(year, month-1, day+1);
+    return new Date(year, month-1, day);
 }
 
 function extraerCamionesJson(camiones : number[]): Camion[] {
