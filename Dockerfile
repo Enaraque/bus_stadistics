@@ -1,7 +1,7 @@
 FROM denoland/deno:alpine
 
-LABEL version="1.0.0"
-LABEL author="enriquearakes@correo.ugr.es"
+LABEL version="1.0.0" \
+      author="enriquearakes@correo.ugr.es"
 
 USER deno
 
