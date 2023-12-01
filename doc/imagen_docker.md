@@ -36,18 +36,12 @@ Las imagenes consideradas son las siguientes:
     podríamos pensar que es la mejor candidata, pero lleva sin ser actualizada desde
     hace 3 años. Esto además ocasina que no reconozca el archivo `deno.json` ya que
     este fue añadido en una actualización posterior a la última actualización de la
-    imagen, la versión `1.18` en enero de 2022. Por tanto, aunque sea
-    compatible y bastante ligera, no es una buena candidata.
-
-- [denoland/deno:alpine](https://hub.docker.com/r/denoland/deno/tags?page=1&ordering=last_updated&name=alpine):
-    Imagen oficial de `Deno` con un tamaño de **50.93 MB**. Esta imagen, quitando la de `hayd`, es la más ligera
-    de todas las consideradas. Al ser oficial de `Deno`, cuenta con un gran mantenimiento y actualizaciones
-    regulares, viendo que su última actualización fue hace 6 días.
+    imagen, la versión `1.18` en enero de 2022. Para poder trabajar con la última
+    versión de `Deno` deberíamos actualizar en nuestro Dockerfile la versión de `Deno`
+    a la versión `1.18` o inferior.
 
 - [denoland/deno:debian](https://hub.docker.com/r/denoland/deno/tags?page=1&ordering=last_updated&name=debian):
-    Imagen oficial de `Deno` con un tamaño de **72.33MB**. Basada en Debian. Costa de un tamaño superior a la
-    imagen de `alpine`. También cuenta con buen mantenimiento y actualizaciones regulares, viendo que su última
-    actualización fue hace 6 días.
+    Imagen oficial de `Deno` con un tamaño de **72.33MB**. Basada en Debian. También cuenta con buen mantenimiento y actualizaciones regulares, viendo que su última actualización fue hace 6 días.
 
 - [denoland/deno:centos](https://hub.docker.com/r/denoland/deno/tags?page=1&ordering=last_updated&name=centos):
     Imagen oficial de `Deno` basada en centOS, es bastante más pesada que las anteriores con un tamaño de **124.18 MB**.
@@ -63,19 +57,18 @@ Las imagenes consideradas son las siguientes:
 Viendo las imágenes consideradas anteriormente, podemos ver que las imágenes oficiales de `Deno`
 tienen más actualiaciones que las de `hayd` y `runcitadel`, aunque estas tengan un tamaño menor.
 
-Si tenemos en cuenta tanto el tamaño como el mantenimento activo,
-las dos candidatas serían `denoland/deno:alpine` y `denoland/deno:debian`. Ganando `alpine` por un
-total de 22MB de diferencia. Por tanto, la imagen a elegir podría ser alpine.
+Si tenemos en cuenta tanto el tamaño podríamos elegir la imagen de `hayd` y teniendo en cuenta
+el mantenimento activo, la mejor sería `debian`.
 
 Para poder resolver las dudas de selección, se ha creado un `Dockerfile` con cada una de las
-imágenes consideradas y hemos ejecutado los tests en cada una de ellas. En un principio, alpine sería
+imágenes consideradas y hemos ejecutado los tests en cada una de ellas. En un principio, `hayd` sería
 la imagen elegida ya que es la que menor tamaño ofrece, pero primero deberiamos de ver la rapidez de cada una
 de ellas para ver si no hay una gran diferencia que nos haga dudar a la hora de la selección.
 Las ejecuciones han sido las siguientes:
 
-- Para la imagen `denoland/deno:alpine`:
+- Para la imagen `hayd/alpine-deno`:
 
-    ![Ejecucion con test con imagen alpine](./ejecucion_tests_deno_alpine.png)
+    ![Ejecucion con test con imagen hayd](./ejecucion_tests_deno_hayd.png)
 
 - Para la imagen `denoland/deno:debian`:
 
@@ -83,5 +76,5 @@ Las ejecuciones han sido las siguientes:
 
 ### Resultados
 
-Como podemos ver, alpine sigue ganando por 3ms a debian. Por tanto, la imagen elegida será `denoland/deno:alpine`
-siendo la imagen más ligera de las presentes y la más rápida de las seleccionadas.
+Como podemos ver, `debian` gana por tan solo 3ms a hayd. Al ser tan poca la diferencia de tiempo y `hayd`
+ocupar bastante menos que debian, la imagen elegida será `hayd/alpine-deno`.

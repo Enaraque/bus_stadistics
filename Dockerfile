@@ -1,6 +1,6 @@
 FROM hayd/alpine-deno
 
-LABEL version="1.0.0" \
+LABEL version="1.0.2" \
       author="enriquearakes@correo.ugr.es"
 
 RUN deno upgrade
