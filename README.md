@@ -26,6 +26,21 @@ Para poder ejecutar los tests hay que ejecutar el siguiente comando:
 deno task test
 ```
 
+### Construcción y ejecución de la imagen Docker
+
+- Para poder construir la imagen Docker hay que ejecutar el siguiente comando:
+
+```bash
+docker build -t enaraque/bus_stadistics .
+```
+> __Nota__: También podemos obtener la imagen desde [DockerHub](https://hub.docker.com/r/enaraque/bus_stadistics)
+
+- Para poder ejecutar la imagen Docker hay que ejecutar el siguiente comando:
+
+```bash
+docker run -tv `pwd`:/app/test enaraque/bus_stadistics
+```
+
 ## Configuración de git y gitHub
 
 La configuración se puede ver [aqui](/doc/configuracion_gitHub.md)
@@ -38,3 +53,5 @@ La configuración se puede ver [aqui](/doc/configuracion_gitHub.md)
 - [Runtime](/doc/runtime.md)
 - [Gestor de dependencias](/doc/gestor_dependencias.md)
 - [Gestor de tareas](/doc/gestor_tareas.md)
+- [Herramientas para los tests](/doc/eleccion_herramientas_test.md)
+- [Imagen de Docker](/doc/imagen_docker.md)
