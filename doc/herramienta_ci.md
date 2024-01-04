@@ -42,7 +42,11 @@ que me gustaría.
 importar tu repositorio de GitHub para poder hacer el CI. Al igual que gitHub Actions, es una herramienta
 bastante utilizada y con buena documentación. También es compatible con docker.
 
+- [Jenkins](https://www.jenkins.io/): Además de la versión de pago, Jenkins también ofrece una versión comunitaria de código abierto. Aunque puede requerir más configuración manual, proporciona una solución sólida y gratuita para la integración continua. La comunidad activa y la amplia gama de plugins hacen que sea una opción viable para proyectos de diferentes tamaños.
+
+- [Drone](https://docs.drone.io/):  Drone CI es una plataforma de CI/CD moderna y de código abierto. Ofrece una integración sencilla con GitHub y un sistema basado en contenedores que lo hace compatible con Docker. La configuración se realiza a través de archivos YAML, lo que facilita la definición de flujos de trabajo. A pesar de ser gratuito, proporciona características avanzadas para la automatización de proyectos.
+
 ## Selección
 
-Las diferentes opciones han sido Travis, CircleCI y GitHub Actions. De estas, las que más me han
+Las diferentes opciones han sido Travis y GitHub Actions. De estas, las que más me han
 convencido tanto por el tiempo gratuito de uso como por la compatibilidad con GitHub han sido Travis y GitHub Actions (obviamente).
