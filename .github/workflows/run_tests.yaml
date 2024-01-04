@@ -1,10 +1,14 @@
-name: Deno
+name: Run tests
 
 on: push
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        deno-version: [1.5.0, 1.10.0, canary, 1.20.0, 1.30.0] # Agrega las versiones de Deno que necesitas
 
     steps:
       - name: Setup repo
@@ -13,7 +17,7 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: canary
+          deno-version: ${{ matrix.deno-version }}
 
       - name: Run tests
         run: deno task test
