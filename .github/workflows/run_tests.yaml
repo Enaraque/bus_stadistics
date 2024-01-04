@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        deno-version: [canary, 1.38.0, 1.37.2, 1.37.0]
+        deno-version: [canary, 1.38, 1.37]
 
     steps:
       - name: Setup repo
