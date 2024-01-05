@@ -1,2 +1,4 @@
 # Ignorar archivos .DS_Store generados por macOS
 .DS_Store
+
+.vscode
