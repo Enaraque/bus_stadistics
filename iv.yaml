@@ -6,3 +6,6 @@ automatizar:
   fichero: deno.json
   orden: deno task
 test: test/asignacion_pedidos_test.ts
+CI:
+  - .github/workflows/run_tests.yaml
+  - .travis.yaml
